@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: parent.poc-argocd-ms-01
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/fernandosoaresjr/poc-argocd-ms-01'
+    targetRevision: poc-multi-cluster
+    path: k8s/argo-apps/child/
+  destination:
+    name: in-cluster
+    namespace: argocd
+    # server: 'https://kubernetes.default.svc'  # Local cluster for ArgoCD
+    # server: 'https://127.0.0.1:42089'
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true

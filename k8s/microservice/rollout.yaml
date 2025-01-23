@@ -1,0 +1,47 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: poc-argocd-ms-01
+spec:
+  replicas: 2
+  strategy:
+    canary:
+      maxSurge: "100%"
+      steps:
+        - pause: {}
+        - setWeight: 50
+        - pause: {}
+  selector:
+    matchLabels:
+      app: poc-argocd-ms-01
+  template:
+    metadata:
+      labels:
+        app: poc-argocd-ms-01
+    spec:
+      containers:
+        - name: application
+          image: python:3.8-slim
+          command: ["/bin/sh", "-c", "pip install -r /app/requirements.txt && python3 -m flask run --host=0.0.0.0 --port=80"]
+          env:
+            - name: VERSION
+              value: "1.0.0"
+            - name: FLASK_APP
+              value: "app.py"
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+            requests:
+              memory: "32Mi"
+              cpu: "100m"
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - name: app-volume
+              mountPath: /app
+          workingDir: /app
+      volumes:
+        - name: app-volume
+          configMap:
+            name: poc-argocd-ms-01
