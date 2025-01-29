@@ -3,7 +3,7 @@ kind: Rollout
 metadata:
   name: poc-argocd-ms-01
   labels:
-    version: v1.4.0
+    version: v1.5.0
 spec:
   replicas: 2
   strategy:
@@ -20,7 +20,7 @@ spec:
     metadata:
       labels:
         app: poc-argocd-ms-01
-        version: v1.4.0
+        version: v1.5.0
     spec:
       containers:
         - name: application
@@ -28,7 +28,7 @@ spec:
           command: ["/bin/sh", "-c", "pip install -r /app/requirements.txt && python3 -m flask run --host=0.0.0.0 --port=80"]
           env:
             - name: VERSION
-              value: "1.4.0"
+              value: "1.5.0"
             - name: FLASK_APP
               value: "app.py"
           resources:
