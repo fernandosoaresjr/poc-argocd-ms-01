@@ -1,0 +1,6 @@
+dependencies:
+- name: microservice
+  repository: https://fernandosoaresjr.github.io/poc-argocd-helm/charts
+  version: 1.0.0
+digest: sha256:fdaf6d37b90b2cb859c5c2bb3161d12b9067ea1f582b6ed95cf8cff8c482e1d4
+generated: "2025-01-31T14:24:44.712973083-03:00"
