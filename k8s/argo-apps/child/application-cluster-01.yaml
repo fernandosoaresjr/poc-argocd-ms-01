@@ -4,7 +4,7 @@ metadata:
   name: cluster-01.poc-argocd-ms-01
   namespace: argocd
   labels:
-    version: v2.1.0
+    version: v2.2.0
 spec:
   project: default
   source:
@@ -13,7 +13,7 @@ spec:
       chart: ms
       parameters:
         - name: microservice.version
-          value: 2.1.0
+          value: 2.2.0
     repoURL: 'https://github.com/fernandosoaresjr/poc-argocd-ms-01'
     targetRevision: poc-multi-cluster
     path: k8s/microservice/
