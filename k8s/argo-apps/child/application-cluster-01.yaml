@@ -4,19 +4,33 @@ metadata:
   name: cluster-01.poc-argocd-ms-01
   namespace: argocd
   labels:
-    version: v2.2.0
+    version: v2.3.0
 spec:
   project: default
   source:
+    # Can point to either a Helm chart repo or a git repo.
+    # In this case, we are pointing to a git repo.
+    repoURL: 'https://github.com/fernandosoaresjr/poc-argocd-ms-01'
+    # For Helm, this refers to the chart version.
+    # For git, this refers to the git revision (e.g. branch, tag, commit).
+    targetRevision: poc-multi-cluster
+    # This has no meaning for Helm charts pulled directly from a Helm repo instead of git.
+    # For git, this refers to the path within the repo.
+    path: k8s/microservice/
+
+    # helm specific config
+    # Set this when pulling directly from a Helm repo. DO NOT set for git-hosted Helm charts.
+    chart: ms
     helm:
+      # Release name override (defaults to application name)
+      # We need to set this because we are using `.` in the application name, which is not allowed in Helm release names
       releaseName: cluster-01-poc-argocd-ms-01
-      chart: ms
+      # Extra parameters to set (same as setting through values.yaml, but these take precedence)
+      # This is equivalent to `--set microservice.version=2.3.0`
+      # We'll use this as hack to set the version of the microservice, in order to achieve the desired behavior of deploying in multi-cluster
       parameters:
         - name: microservice.version
-          value: 2.2.0
-    repoURL: 'https://github.com/fernandosoaresjr/poc-argocd-ms-01'
-    targetRevision: poc-multi-cluster
-    path: k8s/microservice/
+          value: 2.3.0
   destination:
     name: kind-local-01
     namespace: default
