@@ -5,7 +5,7 @@ metadata:
   namespace: argocd
   labels:
     microservice: "true"
-    version: v3.0.2
+    version: v3.0.3
   finalizers:
     - resources-finalizer.argocd.argoproj.io/foreground
 spec:
@@ -29,11 +29,11 @@ spec:
       # We need to set this because we are using `.` in the application name, which is not allowed in Helm release names
       releaseName: prd-01-poc-argocd-ms-01
       # Extra parameters to set (same as setting through values.yaml, but these take precedence)
-      # This is equivalent to `--set microservice.version=3.0.2`
+      # This is equivalent to `--set microservice.version=3.0.3`
       # We'll use this as hack to set the version of the microservice, in order to achieve the desired behavior of deploying in multi-cluster
       parameters:
         - name: microservice.version
-          value: 3.0.2
+          value: 3.0.3
   destination:
     name: kind-local-01
     namespace: default
