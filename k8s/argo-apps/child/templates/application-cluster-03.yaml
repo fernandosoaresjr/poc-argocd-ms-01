@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: prd-01.poc-argocd-ms-01
+  name: prd-03.poc-argocd-ms-01
   namespace: argocd
   labels:
     microservice: "true"
@@ -27,7 +27,7 @@ spec:
     helm:
       # Release name override (defaults to application name)
       # We need to set this because we are using `.` in the application name, which is not allowed in Helm release names
-      releaseName: prd-01-poc-argocd-ms-01
+      releaseName: prd-03-poc-argocd-ms-01
       # Extra parameters to set (same as setting through values.yaml, but these take precedence)
       # This is equivalent to `--set microservice.version=4.0.6`
       # We'll use this as hack to set the version of the microservice, in order to achieve the desired behavior of deploying in multi-cluster
@@ -35,7 +35,7 @@ spec:
         - name: microservice.version
           value: {{ .Values.version }}
   destination:
-    name: kind-local-01
+    name: in-cluster
     namespace: default
   syncPolicy:
     automated:
