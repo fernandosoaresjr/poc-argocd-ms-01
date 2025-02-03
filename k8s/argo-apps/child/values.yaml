@@ -19,13 +19,16 @@ application:
 applications:
   - cluster: kind-local-01
     clusterAlias: prd-01
+    syncWave: 1
     # version:
 
   - cluster: in-cluster
     clusterAlias: prd-02
     namespace: default
+    syncWave: 2
     # version:
 
   - cluster: in-cluster
     clusterAlias: prd-03
+    syncWave: 3
     # version:
