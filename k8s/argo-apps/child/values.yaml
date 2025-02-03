@@ -1,1 +1,31 @@
-# version: 4.0.7
+## Define the version of the microservice to be deployed
+## The value of this key will be passed from the parent chart to the child chart
+# version:
+
+# Default configuration for all applications
+application:
+  name: poc-argocd-ms-01
+  namespace: argocd
+  project: default
+  source:
+    github:
+      org: fernandosoaresjr
+      repo: poc-argocd-ms-01
+      targetRevision: poc-multi-cluster
+      path: k8s/microservice/
+  destination:
+    namespace: default
+
+applications:
+  - cluster: kind-local-01
+    clusterAlias: prd-01
+    # version:
+
+  - cluster: in-cluster
+    clusterAlias: prd-02
+    namespace: default
+    # version:
+
+  - cluster: in-cluster
+    clusterAlias: prd-03
+    # version:

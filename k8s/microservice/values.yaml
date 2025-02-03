@@ -1,2 +1,4 @@
+## Define the version of the microservice to be deployed
+## The value of this key will be passed from the child chart to the microservice chart
 # microservice:
-#   version: "4.0.7"
+#   version:
