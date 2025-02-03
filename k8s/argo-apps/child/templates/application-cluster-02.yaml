@@ -29,7 +29,7 @@ spec:
       # We need to set this because we are using `.` in the application name, which is not allowed in Helm release names
       releaseName: prd-02-poc-argocd-ms-01
       # Extra parameters to set (same as setting through values.yaml, but these take precedence)
-      # This is equivalent to `--set microservice.version=4.0.0`
+      # This is equivalent to `--set microservice.version=4.0.1`
       # We'll use this as hack to set the version of the microservice, in order to achieve the desired behavior of deploying in multi-cluster
       parameters:
         - name: microservice.version
