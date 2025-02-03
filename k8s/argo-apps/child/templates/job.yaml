@@ -1,0 +1,32 @@
+{{- range slice .Values.applications 1 }}
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: "pre-sync.{{ .clusterAlias }}.{{ $.Values.application.name }}"
+  namespace: {{ $.Values.application.namespace }}
+  labels:
+    microservice: "true"
+    version: "v{{ $.Values.version }}"
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io/foreground
+  annotations:
+    argocd.argoproj.io/sync-wave: "{{ .syncWave }}"
+    argocd.argoproj.io/hook: PreSync
+spec:
+  ttlSecondsAfterFinished: 3600
+  trigger:
+    startAfter: "{{ now | dateModify "+3m" }}"
+  template:
+    spec:
+      restartPolicy: OnFailure
+      containers:
+        - name: sync-app
+          image: quay.io/argoproj/argocd:v2.13.3
+          imagePullPolicy: IfNotPresent
+          command: ["/bin/sh", "-c"]
+          args:
+            - |
+              argocd app sync {{ $.Values.application.namespace }}/{{ .clusterAlias }}.{{ $.Values.application.name }} \
+                --grpc-web --server=argocd-server.argocd.svc.cluster.local
+---
+{{- end }}
