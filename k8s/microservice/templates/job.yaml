@@ -23,5 +23,5 @@ spec:
           command: ["/bin/sh", "-c"]
           args:
             - |
-              argocd app sync {{ .Release.Namespace }}/{{ .Release.Name }} --server=argocd-server.argocd.svc.cluster.local --insecure
+              argocd app sync {{ .Release.Namespace }}/{{ .Release.Name }} --server=https://local-argocd-control-plane:8080 --insecure
           # argocd app sync {{ .Release.Namespace }}/{{ .Release.Name }} --grpc-web --server=argocd-server.argocd.svc.cluster.local
