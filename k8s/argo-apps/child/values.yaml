@@ -20,6 +20,10 @@ applications:
   - cluster: kind-local-01
     clusterAlias: prd-01
     syncWave: 1
+    syncPolicy:
+      automated:
+        prune: true
+        selfHeal: true
     # version:
 
   - cluster: in-cluster

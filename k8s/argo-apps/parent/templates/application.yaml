@@ -15,7 +15,7 @@ spec:
     targetRevision: poc-multi-cluster
     path: k8s/argo-apps/child/
     helm:
-      releaseName: parent-poc-argocd-ms-01
+      releaseName: child-poc-argocd-ms-01
       parameters:
         - name: version
           value: {{ .Values.version }}
