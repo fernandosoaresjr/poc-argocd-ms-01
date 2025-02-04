@@ -26,10 +26,10 @@ spec:
   destination:
     name: {{ .cluster }}
     namespace: {{ $.Values.application.destination.namespace }}
-    {{- with .syncPolicy }}
-    syncPolicy:
-      {{- toYaml . | nindent 6 }}
-    {{- end }}
+  {{- with .syncPolicy }}
+  syncPolicy:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
   # syncPolicy:
   #   automated:
   #     prune: true

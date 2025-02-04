@@ -1,4 +1,4 @@
 # This file is used to set the default values for the parent chart
 
 # Define the version of the microservice to be deployed
-version: 6.5.0
+version: 6.6.0
