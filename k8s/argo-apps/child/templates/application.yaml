@@ -26,9 +26,9 @@ spec:
   destination:
     name: {{ .cluster }}
     namespace: {{ $.Values.application.destination.namespace }}
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
+  # syncPolicy:
+  #   automated:
+  #     prune: true
+  #     selfHeal: true
 ---
 {{- end }}
