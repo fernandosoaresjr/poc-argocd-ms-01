@@ -2,7 +2,6 @@ apiVersion: batch/v1
 kind: Job
 metadata:
   name: "pre-sync.{{ .Release.Name }}"
-  namespace: {{ .Release.Namespace }}
   labels:
     version: "v{{ .Values.microservice.version }}"
   # finalizers:
