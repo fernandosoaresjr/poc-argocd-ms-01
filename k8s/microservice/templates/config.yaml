@@ -1,9 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: {{ .Release.Name }}-test
-  labels:
-    version: "v{{ .Values.microservice.version }}"
-data:
-  test.txt: |
-    Test

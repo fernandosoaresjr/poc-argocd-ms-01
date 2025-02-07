@@ -1,15 +1,12 @@
 apiVersion: v2
 name: ms
-description: A Helm chart for Kubernetes
+description: >
+  This is a wrapper chart for the microservice chart, designed for use with ArgoCD. 
+  The goal is to utilize the same Helm chart (microservice) to deploy all microservices, 
+  avoiding the need to duplicate chart templates across multiple repositories. 
+  By configuring this chart with a dependency on the microservice chart, 
+  we ensure consistency and reduce maintenance overhead for ArgoCD Applications.
 
-# A chart can be either an 'application' or a 'library' chart.
-#
-# Application charts are a collection of templates that can be packaged into versioned archives
-# to be deployed.
-#
-# Library charts provide useful utilities or functions for the chart developer. They're included as
-# a dependency of application charts to inject those utilities and functions into the rendering
-# pipeline. Library charts do not define any templates and therefore cannot be deployed.
 type: application
 
 # This is the chart version. This version number should be incremented each time you make changes
@@ -22,6 +19,7 @@ dependencies:
     version: ">= 1.0.0"
     repository: "https://fernandosoaresjr.github.io/poc-argocd-helm/charts"
 
+# TODO: Discuss with the team: 1) What we'll use as version number (semver, shacommit, tag, etc). 2) We should use the appVersion or other key in the values.yaml?
 # This is the version number of the application being deployed. This version number should be
 # incremented each time you make changes to the application. Versions are not expected to
 # follow Semantic Versioning. They should reflect the version the application is using.

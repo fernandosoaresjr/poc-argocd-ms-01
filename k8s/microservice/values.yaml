@@ -2,3 +2,6 @@
 ## The value of this key will be passed from the child chart to the microservice chart
 # microservice:
 #   version:
+
+job:
+  enabled: false
