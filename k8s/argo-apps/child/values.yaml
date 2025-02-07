@@ -30,9 +30,17 @@ applications:
     clusterAlias: prd-02
     namespace: default
     syncWave: 2
+    syncPolicy:
+      automated:
+        prune: true
+        selfHeal: true
     # version:
 
   - cluster: in-cluster
     clusterAlias: prd-03
     syncWave: 3
+    syncPolicy:
+      automated:
+        prune: true
+        selfHeal: true
     # version:
