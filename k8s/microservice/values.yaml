@@ -3,5 +3,20 @@
 # microservice:
 #   version:
 
+microservice:
+  rollout:
+    strategy:
+      canary:
+        maxSurge: "100%"
+        steps:
+          # In this PoC, we start the rollout with a pause but in the 
+          # final implementation, we'll look at a metric in Datadog
+          # to determine if the application deployed in the previous
+          # cluster in the chain is healthy and the defined time period
+          # has passed before starting, in fact, the step of the canary
+          - pause: { duration: 2m }
+          - setWeight: 50
+          - pause: { duration: 1m }
+
 job:
   enabled: false

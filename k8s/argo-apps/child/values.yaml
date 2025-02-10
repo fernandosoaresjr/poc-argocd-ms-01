@@ -2,21 +2,6 @@
 ## The value of this key will be passed from the parent chart to the child chart
 # version:
 
-microservice:
-  rollout:
-    strategy:
-      canary:
-        maxSurge: "100%"
-        steps:
-          # In this PoC, we start the rollout with a pause but in the 
-          # final implementation, we'll look at a metric in Datadog
-          # to determine if the application deployed in the previous
-          # cluster in the chain is healthy and the defined time period
-          # has passed before starting, in fact, the step of the canary
-          - pause: 1m
-          - setWeight: 50
-          - pause: {}
-
 # Default configuration for all applications
 application:
   name: poc-argocd-ms-01
