@@ -14,9 +14,12 @@ microservice:
           # to determine if the application deployed in the previous
           # cluster in the chain is healthy and the defined time period
           # has passed before starting, in fact, the step of the canary
-          - pause: { duration: 1m }
+          - pause: {}
           - setWeight: 50
-          - pause: { duration: 1m }
+          - pause: {}
+          # - pause: { duration: 1m }
+          # - setWeight: 50
+          # - pause: { duration: 1m }
 
 job:
   enabled: false
